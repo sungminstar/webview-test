@@ -78,20 +78,20 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Location Information</h1>
+      {/* <header className="App-header"> */}
+      {/* <h1>Location Information</h1>
         {location.latitude !== null && location.longitude !== null ? (
           <p>
             Latitude: {location.latitude}, Longitude: {location.longitude}
           </p>
         ) : (
           <p>Location information not available</p>
-        )}
-        <div
-          ref={mapContainerRef}
-          style={{ width: "100%", height: "500px" }}
-        ></div>
-      </header>
+        )} */}
+      <div
+        ref={mapContainerRef}
+        style={{ width: "100%", height: "100vh" }}
+      ></div>
+      {/* </header> */}
     </div>
   );
 }
