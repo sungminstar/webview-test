@@ -5,26 +5,33 @@ function App() {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
 
   useEffect(() => {
-    // URL 쿼리 매개변수에서 위치 정보를 가져오는 함수
-    const getQueryParam = (param) => {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
+    // 메시지를 수신하여 위치 정보를 업데이트하는 함수
+    const handleMessage = (event) => {
+      try {
+        const message = JSON.parse(event.data);
+        if (message.type === "LOCATION_UPDATE") {
+          const { latitude, longitude } = message.data;
+          setLocation({ latitude, longitude });
+        }
+      } catch (error) {
+        console.error("Error parsing message data:", error);
+      }
     };
 
-    // 위치 정보를 상태에 설정
-    const latitude = getQueryParam("lat");
-    const longitude = getQueryParam("lng");
+    // 메시지 이벤트 리스너 추가
+    window.addEventListener("message", handleMessage);
 
-    if (latitude && longitude) {
-      setLocation({ latitude, longitude });
-    }
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Location Information</h1>
-        {location.latitude && location.longitude ? (
+        {location.latitude !== null && location.longitude !== null ? (
           <p>
             Latitude: {location.latitude}, Longitude: {location.longitude}
           </p>
