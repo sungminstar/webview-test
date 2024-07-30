@@ -36,10 +36,9 @@ function App() {
       // Kakao Maps API가 로드된 후 실행될 코드
       const { kakao } = window;
 
-      // 지도 생성 시 필요한 기본 옵션 설정
       const options = {
         center: new kakao.maps.LatLng(37.495697921511, 126.774847415038), // 기본 중심좌표
-        level: 3, // 확대/축소 레벨
+        level: 3,
       };
 
       mapRef.current = new kakao.maps.Map(mapContainerRef.current, options);
@@ -79,14 +78,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <h1>Location Information</h1> */}
+        {/* <h1>Location Information</h1>
         {location.latitude !== null && location.longitude !== null ? (
           <p>
             Latitude: {location.latitude}, Longitude: {location.longitude}
           </p>
         ) : (
           <p>Location information not available</p>
-        )}
+        )} */}
         <div
           ref={mapContainerRef}
           style={{ width: "100%", height: "100vh" }}
