@@ -38,7 +38,7 @@ function App() {
 
       // 지도 생성 시 필요한 기본 옵션 설정
       const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 기본 중심좌표
+        center: new kakao.maps.LatLng(37.495697921511, 126.774847415038), // 기본 중심좌표
         level: 3, // 확대/축소 레벨
       };
 
