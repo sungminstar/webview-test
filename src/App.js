@@ -1,22 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+
+  useEffect(() => {
+    // URL 쿼리 매개변수에서 위치 정보를 가져오는 함수
+    const getQueryParam = (param) => {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    };
+
+    // 위치 정보를 상태에 설정
+    const latitude = getQueryParam("lat");
+    const longitude = getQueryParam("lng");
+
+    if (latitude && longitude) {
+      setLocation({ latitude, longitude });
+    }
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Location Information</h1>
+        {location.latitude && location.longitude ? (
+          <p>
+            Latitude: {location.latitude}, Longitude: {location.longitude}
+          </p>
+        ) : (
+          <p>Location information not available</p>
+        )}
       </header>
     </div>
   );
