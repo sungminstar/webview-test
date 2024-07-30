@@ -79,7 +79,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <h1>Map Display</h1> */}
+        <h1>Map Display</h1>
         {/* 주석 처리된 위치 정보 부분 */}
         {/* {location.latitude !== null && location.longitude !== null ? (
           <p>
