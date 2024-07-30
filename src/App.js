@@ -11,9 +11,8 @@ function App() {
       console.log("Received message:", event.data);
 
       try {
-        // event.data가 문자열일 경우, 파싱하여 객체로 변환
-        const data =
-          typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+        // event.data가 JSON 문자열일 경우, 파싱하여 객체로 변환
+        const data = JSON.parse(event.data);
 
         // JSON 데이터가 존재하고 'type'이 'LOCATION_UPDATE'일 경우 처리
         if (data && data.type === "LOCATION_UPDATE") {
