@@ -7,14 +7,13 @@ function App() {
   useEffect(() => {
     // 메시지를 수신하여 위치 정보를 업데이트하는 함수
     const handleMessage = (event) => {
-      try {
-        const message = JSON.parse(event.data);
-        if (message.type === "LOCATION_UPDATE") {
-          const { latitude, longitude } = message.data;
-          setLocation({ latitude, longitude });
-        }
-      } catch (error) {
-        console.error("Error parsing message data:", error);
+      // 데이터 확인을 위한 콘솔 로그
+      console.log("Received message:", event.data);
+
+      // event.data가 객체라면 직접 사용
+      if (event.data && event.data.type === "LOCATION_UPDATE") {
+        const { latitude, longitude } = event.data.data;
+        setLocation({ latitude, longitude });
       }
     };
 
