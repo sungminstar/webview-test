@@ -79,7 +79,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Location Information</h1>
+        {/* <h1>Location Information</h1> */}
         {location.latitude !== null && location.longitude !== null ? (
           <p>
             Latitude: {location.latitude}, Longitude: {location.longitude}
