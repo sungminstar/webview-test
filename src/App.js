@@ -10,10 +10,17 @@ function App() {
       // 데이터 확인을 위한 콘솔 로그
       console.log("Received message:", event.data);
 
-      // event.data가 객체라면 직접 사용
-      if (event.data && event.data.type === "LOCATION_UPDATE") {
-        const { latitude, longitude } = event.data.data;
-        setLocation({ latitude, longitude });
+      try {
+        // event.data가 JSON 문자열일 경우, 파싱하여 객체로 변환
+        const data = JSON.parse(event.data);
+
+        // JSON 데이터가 존재하고 'type'이 'LOCATION_UPDATE'일 경우 처리
+        if (data && data.type === "LOCATION_UPDATE") {
+          const { latitude, longitude } = data.data;
+          setLocation({ latitude, longitude });
+        }
+      } catch (error) {
+        console.error("Error parsing message data:", error);
       }
     };
 
